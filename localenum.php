@@ -75,11 +75,6 @@ abstract class LocalEnum
       $enum = $this->_default;
     }
 
-    if(!is_scalar($enum))
-    {
-      throw new \UnexpectedValueException("The Enum value must be scalar");
-    }
-
     if(!array_key_exists($enum, $this->_enumsReversed))
     {
       throw new \UnexpectedValueException("Enum '{$enum}' does not exist");
