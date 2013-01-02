@@ -12,9 +12,9 @@ abstract class LocalEnum
    * @param mixed $enum
    * @param bool  $strict
    */
-  public function __construct($enum, $strict = false)
+  public function __construct($enum = null, $strict = false)
   {
-    $reflection = new ReflectionClass($this);
+    $reflection = new \ReflectionClass($this);
     $constants = $reflection->getConstants();
 
     $this->_setDefault($constants)
@@ -31,7 +31,7 @@ abstract class LocalEnum
   {
     if(!isset($constants[self::$_DEFAULT_KEY]))
     {
-      throw new UnexpectedValueException("No default enum set");
+      throw new \UnexpectedValueException("No default enum set");
     }
 
     $this->_default = $constants[self::$_DEFAULT_KEY];
@@ -48,17 +48,17 @@ abstract class LocalEnum
   {
     $tempConstants = $constants;
 
-    if(array_key_exists(self::$_DEFAULT_KEY, $tempConstants))
+    if(\array_key_exists(self::$_DEFAULT_KEY, $tempConstants))
     {
       unset($tempConstants[self::$_DEFAULT_KEY]);
     }
 
     if(empty($tempConstants))
     {
-      throw new UnexpectedValueException("No constants set");
+      throw new \UnexpectedValueException("No constants set");
     }
 
-    $this->_enumsReversed = array_flip($tempConstants);
+    $this->_enumsReversed = \array_flip($tempConstants);
 
     return $this;
   }
@@ -77,12 +77,12 @@ abstract class LocalEnum
 
     if(!is_scalar($enum))
     {
-      throw new UnexpectedValueException("The Enum value must be scalar");
+      throw new \UnexpectedValueException("The Enum value must be scalar");
     }
 
     if(!array_key_exists($enum, $this->_enumsReversed))
     {
-      throw new UnexpectedValueException("Enum '{$enum}' does not exist");
+      throw new \UnexpectedValueException("Enum '{$enum}' does not exist");
     }
 
     $this->_enum = $enum;
