@@ -1,14 +1,14 @@
 <?php
 if(class_exists("SplEnum"))
 {
-  class Enum extends SplEnum
+  abstract class Enum extends SplEnum
   {
   }
 }
 else
 {
   require_once("localenum.php");
-  class Enum extends LocalEnum
+  abstract class Enum extends LocalEnum
   {
   }
 }
