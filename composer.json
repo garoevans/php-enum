@@ -1,0 +1,23 @@
+{
+  "name": "garoevans/php-enum",
+  "description": "",
+  "keywords": [
+    "php",
+    "enum",
+    "enumeration",
+    "type",
+    "splenum"
+  ],
+  "homepage": "https://github.com/garoevans/php-enum",
+  "authors": [
+    {
+      "name": "Gareth Evans",
+      "email": "garoevans@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-0": {
+      "Garoevans\\": "src/"
+    }
+  }
+}
