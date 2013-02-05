@@ -1,6 +1,6 @@
 {
   "name": "garoevans/php-enum",
-  "description": "",
+  "description": "Convenient way to always have an Enum object available and utilise Spl Types if available.",
   "keywords": [
     "php",
     "enum",
@@ -9,12 +9,16 @@
     "splenum"
   ],
   "homepage": "https://github.com/garoevans/php-enum",
+  "licence": "MIT",
   "authors": [
     {
       "name": "Gareth Evans",
       "email": "garoevans@gmail.com"
     }
   ],
+  "require": {
+    "php": ">=5"
+  },
   "autoload": {
     "psr-0": {
       "Garoevans\\": "src/"
