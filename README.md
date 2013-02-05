@@ -11,7 +11,7 @@ parameters are necessary. Force it to act like the documentation says it should.
 The replacement is so closely tied to the expected usage of the Spl Enum that
 you could just use the http://php.net/manual/en/class.splenum.php documentation;
 
-    namespace Garoevans\PhpEnum\Enum;
+    use Garoevans\PhpEnum\Enum;
 
     class Fruit extends Enum
     {
@@ -47,10 +47,17 @@ you could just use the http://php.net/manual/en/class.splenum.php documentation;
     // of Fruit, integer given
     eat($fail);
 
-Apart from normalizing the Spl Enum construct the only addition is a shorthand
-way of instantiating via a static method named the same as the desired constant.
-Using the ```Fruit``` class from above we can do the following;
+Apart from normalizing the Spl Enum construct there are additions including a
+shorthand way of instantiating via a static method named the same as the desired
+constant. Using the ```Fruit``` class from above we can do the following;
 
     // Eating an apple.
     eat(Fruit::APPLE());
 
+Also, the ```constantExists()``` method is available for use;
+
+    $fruit = new Fruit();
+    if($fruit->constantExists("apple"))
+    {
+      echo "Apple is available.\n";
+    }
