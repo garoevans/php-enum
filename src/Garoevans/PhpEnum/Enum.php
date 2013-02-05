@@ -10,7 +10,6 @@
  *
  * @author: gareth.evans
  */
-
 namespace Garoevans\PhpEnum;
 
 if(class_exists("\\SplEnum"))
@@ -45,5 +44,10 @@ abstract class Enum extends EnumWrapper
   public static function __callStatic($name, $arguments)
   {
     return new static(constant(get_called_class() . '::' . strtoupper($name)));
+  }
+
+  public function constantExists($constant)
+  {
+    return array_key_exists(strtoupper($constant), $this->getConstList());
   }
 }
