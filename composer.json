@@ -9,7 +9,7 @@
     "splenum"
   ],
   "homepage": "https://github.com/garoevans/php-enum",
-  "licence": "MIT",
+  "license": "MIT",
   "authors": [
     {
       "name": "Gareth Evans",
