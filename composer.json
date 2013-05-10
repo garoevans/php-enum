@@ -13,9 +13,13 @@
   "authors": [
     {
       "name": "Gareth Evans",
-      "email": "garoevans@gmail.com"
+      "email": "garoevans@gmail.com",
+      "role": "developer"
     }
   ],
+  "support": {
+    "email": "garoevans@gmail.com"
+  },
   "require": {
     "php": ">=5"
   },
