@@ -14,17 +14,12 @@ namespace Garoevans\PhpEnum;
 
 if(class_exists("\\SplEnum"))
 {
-  class SplWrapper extends \SplEnum
+  abstract class EnumWrapper extends \SplEnum
   {
     public function __construct($enum = null, $strict = false)
     {
       parent::__construct($enum, $strict);
     }
-  }
-
-  abstract class EnumWrapper extends SplWrapper
-  {
-
   }
 }
 else
@@ -41,13 +36,59 @@ else
  */
 abstract class Enum extends EnumWrapper
 {
+  /**
+   * @param $name
+   * @param $arguments
+   *
+   * @return static
+   */
   public static function __callStatic($name, $arguments)
   {
     return new static(constant(get_called_class() . '::' . strtoupper($name)));
   }
 
+  /**
+   * @param $value
+   *
+   * @return mixed
+   */
+  public static function fromValue($value)
+  {
+    $const = static::constFromValue($value);
+
+    return static::$const();
+  }
+
+  /**
+   * @param $value
+   *
+   * @return mixed
+   * @throws \UnexpectedValueException
+   */
+  public static function constFromValue($value)
+  {
+    $const = array_search($value, (new static)->getConstList());
+
+    if($const === false)
+    {
+      throw new \UnexpectedValueException("Value '{$value}' does not exist");
+    }
+
+    return $const;
+  }
+
+  /**
+   * @param string $constant
+   *
+   * @return bool
+   */
   public function constantExists($constant)
   {
     return array_key_exists(strtoupper($constant), $this->getConstList());
+  }
+
+  public function getDefault()
+  {
+    return static::__default;
   }
 }
