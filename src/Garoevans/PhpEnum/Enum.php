@@ -31,8 +31,8 @@ else
 }
 
 /**
- * @method Enum __toString()
- * @method Enum getConstList()
+ * @method Enum  __toString()
+ * @method array getConstList() array of constants => values
  */
 abstract class Enum extends EnumWrapper
 {
