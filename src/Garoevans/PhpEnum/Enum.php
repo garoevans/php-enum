@@ -94,4 +94,35 @@ abstract class Enum extends EnumWrapper
   {
     return static::__default;
   }
+
+  /**
+   * @param string $compare String representation of an enum value, usually
+   *                        passed as a constant.
+   *
+   * @return bool
+   */
+  public function is($compare)
+  {
+    return $compare === (string)$this;
+  }
+
+  /**
+   * @param string|Enum $value
+   * @param string|Enum $expect
+   * @param bool        $strict
+   *
+   * @return bool
+   */
+  public static function match($value, $expect, $strict = true)
+  {
+    if($strict)
+    {
+      if(!array_search((string)$expect, (new static)->getConstList()))
+      {
+        return false;
+      }
+    }
+
+    return (string)$value === (string)$expect;
+  }
 }

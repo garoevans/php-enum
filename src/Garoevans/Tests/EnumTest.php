@@ -72,4 +72,43 @@ class EnumTest extends \PHPUnit_Framework_TestCase
     $this->assertTrue($enum->constantExists("true"));
     $this->assertFalse($enum->constantExists("random"));
   }
+
+  public function testIs()
+  {
+    $enum = new Type\Bool(Type\Bool::TRUE);
+
+    $this->assertTrue($enum->is(Type\Bool::TRUE));
+    $this->assertFalse($enum->is(Type\Bool::FALSE));
+  }
+
+  /**
+   * @dataProvider compareCouples
+   */
+  public function testMatch($shouldMatch, $val1, $val2, $strict)
+  {
+    if($shouldMatch)
+    {
+      $this->assertTrue(Type\Bool::match($val1, $val2, $strict));
+    }
+    else
+    {
+      $this->assertFalse(Type\Bool::match($val1, $val2, $strict));
+    }
+  }
+
+  public function compareCouples()
+  {
+    return array(
+      array(true, 1, 1, true),
+      array(true, new Type\Bool(), new Type\Bool(), true),
+      array(true, new Type\Bool(), 1, true),
+      array(true, new Type\Bool(), Type\Bool::TRUE, true),
+      array(false, 1, 2, true),
+      array(false, new Type\Bool(), new Type\Bool(Type\Bool::FALSE), true),
+      array(false, new Type\Bool(), 0, true),
+      array(false, new Type\Bool(), Type\Bool::FALSE, true),
+      array(true, "foo", "foo", false),
+      array(false, "foo", "foo", true),
+    );
+  }
 }
