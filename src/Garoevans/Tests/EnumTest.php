@@ -6,12 +6,6 @@ namespace Garoevans\Tests;
 
 class EnumTest extends \PHPUnit_Framework_TestCase
 {
-  public function setUp()
-  {
-    // This should get us to a composer auto loader wherever we are
-    require_once dirname(dirname(dirname(__DIR__))) . "/vendor/autoload.php";
-  }
-
   public function testSomething()
   {
     $this->setExpectedException(
