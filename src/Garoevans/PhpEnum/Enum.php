@@ -87,6 +87,9 @@ abstract class Enum extends EnumWrapper
     return array_key_exists(strtoupper($constant), $this->getConstList());
   }
 
+  /**
+   * @return string
+   */
   public function getDefault()
   {
     return static::__default;
