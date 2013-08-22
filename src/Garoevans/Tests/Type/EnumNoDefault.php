@@ -6,6 +6,13 @@ namespace Garoevans\Tests\Type;
 
 use Garoevans\PhpEnum\Enum;
 
+/**
+ * Class EnumNoDefault
+ * @package Garoevans\Tests\Type
+ *
+ * @method static TRUE
+ * @method static FALSE
+ */
 class EnumNoDefault extends Enum
 {
   const TRUE = "1";
