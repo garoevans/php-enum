@@ -16,7 +16,7 @@ you could just use the http://php.net/manual/en/class.splenum.php documentation;
     class Fruit extends Enum
     {
       // If no value is given during object construction this value is used
-      const __default = 1;
+      const __default = self::APPLE;
       // Our enum values
       const APPLE     = 1;
       const ORANGE    = 2;
@@ -28,11 +28,11 @@ you could just use the http://php.net/manual/en/class.splenum.php documentation;
 
     function eat(Fruit $aFruit)
     {
-      if(Fruit::APPLE == $aFruit)
+      if($aFruit->is(Fruit::APPLE))
       {
         echo "Eating an apple.\n";
       }
-      else if(Fruit::ORANGE == $aFruit)
+      else if($aFruit->is(Fruit::ORANGE))
       {
         echo "Eating an orange.\n";
       }
@@ -43,8 +43,8 @@ you could just use the http://php.net/manual/en/class.splenum.php documentation;
     // Eating an orange.
     eat($myOrange);
 
-    // PHP Catchable fatal error:  Argument 1 passed to eat() must be an instance
-    // of Fruit, integer given
+    // PHP Catchable fatal error:  Argument 1 passed to eat() must be an
+    // instance of Fruit, integer given
     eat($fail);
 
 Apart from normalizing the Spl Enum construct there are additions including a
