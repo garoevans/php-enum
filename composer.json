@@ -21,7 +21,8 @@
     "email": "garoevans@gmail.com"
   },
   "require": {
-    "php": ">=5"
+    "php": ">=5",
+	"phpunit/phpunit": "3.7.*"
   },
   "autoload": {
     "psr-0": {
