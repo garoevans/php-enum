@@ -1,4 +1,4 @@
-# Garoevans Php Enum
+# Garoevans Php Enum [![Build Status](https://travis-ci.org/garoevans/php-enum.png)](https://travis-ci.org/garoevans/php-enum)
 
 This gives us a convenient way to always have an Enum object available and
 utilise Spl Types if available. It does kick up a bit of a fuss in some IDEs
