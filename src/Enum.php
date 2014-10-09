@@ -21,7 +21,7 @@ if (class_exists("\\SplEnum")) {
         }
     }
 } else {
-    abstract class EnumWrapper extends Enum\Reflection
+    abstract class EnumWrapper extends Reflection\Enum
     {
 
     }

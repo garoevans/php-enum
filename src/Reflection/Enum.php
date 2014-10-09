@@ -3,9 +3,9 @@
  * @author: gareth.evans
  */
 
-namespace Garoevans\PhpEnum\Enum;
+namespace Garoevans\PhpEnum\Reflection;
 
-abstract class Reflection
+abstract class Enum
 {
     protected $default;
     protected $enum;
@@ -32,7 +32,7 @@ abstract class Reflection
     /**
      * @param array $constants
      *
-     * @return Reflection $this
+     * @return Enum $this
      * @throws \UnexpectedValueException
      */
     protected function setDefault(array $constants)
@@ -49,7 +49,7 @@ abstract class Reflection
     /**
      * @param array $constants
      *
-     * @return Reflection $this
+     * @return Enum $this
      * @throws \UnexpectedValueException
      */
     protected function setEnums(array $constants)
@@ -73,7 +73,7 @@ abstract class Reflection
     /**
      * @param $enum
      *
-     * @return Reflection $this
+     * @return Enum $this
      * @throws \UnexpectedValueException
      */
     protected function setEnum($enum)
