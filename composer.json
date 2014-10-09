@@ -27,8 +27,13 @@
         "phpunit/phpunit": "4.*"
     },
     "autoload": {
-        "psr-0": {
-            "Garoevans\\": "src/"
+        "psr-4": {
+            "Garoevans\\PhpEnum\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Garoevans\\PhpEnum\\Tests\\": "tests/unit/src"
         }
     }
 }

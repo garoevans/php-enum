@@ -1,0 +1,16 @@
+<phpunit bootstrap="vendor/autoload.php"
+         backupGlobals="false"
+         backupStaticAttributes="false"
+         strict="true"
+         verbose="true">
+    <testsuites>
+        <testsuite>
+            <directory>tests/unit/src</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist>
+            <directory suffix=".php">src</directory>
+        </whitelist>
+    </filter>
+</phpunit>
