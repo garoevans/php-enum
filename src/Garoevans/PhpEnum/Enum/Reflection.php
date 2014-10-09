@@ -7,116 +7,111 @@ namespace Garoevans\PhpEnum\Enum;
 
 abstract class Reflection
 {
-  protected $_default;
-  protected $_enum;
-  protected $_enums = array();
-  protected $_enumsReversed = array();
+    protected $default;
+    protected $enum;
+    protected $enums = array();
+    protected $enumsReversed = array();
 
-  protected static $_defaultKey = "__default";
+    protected static $defaultKey = "__default";
 
 
-  /**
-   * @param mixed $enum
-   * @param bool  $strict
-   */
-  public function __construct($enum = null, $strict = false)
-  {
-    $reflection = new \ReflectionClass($this);
-    $constants  = $reflection->getConstants();
-
-    $this->_setDefault($constants)
-      ->_setEnums($constants)
-      ->_setEnum($enum);
-  }
-
-  /**
-   * @param array $constants
-   *
-   * @return Reflection $this
-   * @throws \UnexpectedValueException
-   */
-  protected function _setDefault(array $constants)
-  {
-    if(!isset($constants[self::$_defaultKey]))
+    /**
+     * @param mixed $enum
+     * @param bool  $strict
+     */
+    public function __construct($enum = null, $strict = false)
     {
-      throw new \UnexpectedValueException("No default enum set");
+        $reflection = new \ReflectionClass($this);
+        $constants  = $reflection->getConstants();
+
+        $this->setDefault($constants)
+            ->setEnums($constants)
+            ->setEnum($enum);
     }
 
-    $this->_default = $constants[self::$_defaultKey];
-
-    return $this;
-  }
-
-  /**
-   * @param array $constants
-   *
-   * @return Reflection $this
-   * @throws \UnexpectedValueException
-   */
-  protected function _setEnums(array $constants)
-  {
-    $tempConstants = $constants;
-
-    if(\array_key_exists(self::$_defaultKey, $tempConstants))
+    /**
+     * @param array $constants
+     *
+     * @return Reflection $this
+     * @throws \UnexpectedValueException
+     */
+    protected function setDefault(array $constants)
     {
-      unset($tempConstants[self::$_defaultKey]);
+        if (!isset($constants[self::$defaultKey])) {
+            throw new \UnexpectedValueException("No default enum set");
+        }
+
+        $this->default = $constants[self::$defaultKey];
+
+        return $this;
     }
 
-    if(empty($tempConstants))
+    /**
+     * @param array $constants
+     *
+     * @return Reflection $this
+     * @throws \UnexpectedValueException
+     */
+    protected function setEnums(array $constants)
     {
-      throw new \UnexpectedValueException("No constants set");
+        $tempConstants = $constants;
+
+        if (\array_key_exists(self::$defaultKey, $tempConstants)) {
+            unset($tempConstants[self::$defaultKey]);
+        }
+
+        if (empty($tempConstants)) {
+            throw new \UnexpectedValueException("No constants set");
+        }
+
+        $this->enums         = $tempConstants;
+        $this->enumsReversed = \array_flip($this->enums);
+
+        return $this;
     }
 
-    $this->_enums = $tempConstants;
-    $this->_enumsReversed = \array_flip($this->_enums);
-
-    return $this;
-  }
-
-  /**
-   * @param $enum
-   *
-   * @return Reflection $this
-   * @throws \UnexpectedValueException
-   */
-  protected function _setEnum($enum)
-  {
-    if($enum === null)
+    /**
+     * @param $enum
+     *
+     * @return Reflection $this
+     * @throws \UnexpectedValueException
+     */
+    protected function setEnum($enum)
     {
-      $enum = $this->_default;
+        if ($enum === null) {
+            $enum = $this->default;
+        }
+
+        if (!\array_key_exists($enum, $this->enumsReversed)) {
+            throw new \UnexpectedValueException("Enum '{$enum}' does not exist");
+        }
+
+        $this->enum = $enum;
+
+        return $this;
     }
 
-    if(!\array_key_exists($enum, $this->_enumsReversed))
+    public function __toString()
     {
-      throw new \UnexpectedValueException("Enum '{$enum}' does not exist");
+        return (string)$this->enum;
     }
 
-    $this->_enum = $enum;
-
-    return $this;
-  }
-
-  public function __toString()
-  {
-    return (string)$this->_enum;
-  }
-
-  /**
-   * @param bool $includeDefault
-   *
-   * @return array
-   */
-  public function getConstList($includeDefault = false)
-  {
-    $constants = $this->_enums;
-
-    if($includeDefault)
+    /**
+     * @param bool $includeDefault
+     *
+     * @return array
+     */
+    public function getConstList($includeDefault = false)
     {
-      $constants = array_merge(
-        array(self::$_defaultKey => $this->_default), $constants
-      );
-    }
+        $constants = $this->enums;
 
-    return $constants;
-  }
+        if ($includeDefault) {
+            $constants = array_merge(
+                array(self::$defaultKey => $this->default),
+                $constants
+            );
+        }
+
+        return $constants;
+    }
 }
