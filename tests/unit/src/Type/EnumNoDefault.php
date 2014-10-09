@@ -2,21 +2,19 @@
 /**
  * @author: gareth.evans
  */
-namespace Garoevans\Tests\Type;
+namespace Garoevans\PhpEnum\Tests\Type;
 
 use Garoevans\PhpEnum\Enum;
 
 /**
- * Class Bool
+ * Class EnumNoDefault
  * @package Garoevans\Tests\Type
  *
  * @method static TRUE
  * @method static FALSE
  */
-class Bool extends Enum
+class EnumNoDefault extends Enum
 {
-    const __default = self::TRUE;
-
     const TRUE = "1";
     const FALSE = "0";
 }

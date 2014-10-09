@@ -2,7 +2,7 @@
 /**
  * @author: gareth.evans
  */
-namespace Garoevans\Tests\Type;
+namespace Garoevans\PhpEnum\Tests\Type;
 
 use Garoevans\PhpEnum\Enum;
 

@@ -2,7 +2,7 @@
 /**
  * @author: gareth.evans
  */
-namespace Garoevans\Tests;
+namespace Garoevans\PhpEnum\Tests;
 
 class EnumTest extends \PHPUnit_Framework_TestCase
 {
