@@ -16,27 +16,24 @@ use Garoevans\PhpEnum\Enum;
 
 class Fruit extends Enum
 {
-  // If no value is given during object construction this value is used
-  const __default = self::APPLE;
-  // Our enum values
-  const APPLE     = 1;
-  const ORANGE    = 2;
+    // If no value is given during object construction this value is used
+    const __default = self::APPLE;
+    // Our enum values
+    const APPLE     = 1;
+    const ORANGE    = 2;
 }
 
-$myApple   = new Fruit();
-$myOrange  = new Fruit(Fruit::ORANGE);
-$fail      = 1;
+$myApple  = new Fruit();
+$myOrange = new Fruit(Fruit::ORANGE);
+$fail     = 1;
 
 function eat(Fruit $aFruit)
 {
-  if($aFruit->is(Fruit::APPLE))
-  {
-    echo "Eating an apple.\n";
-  }
-  else if($aFruit->is(Fruit::ORANGE))
-  {
-    echo "Eating an orange.\n";
-  }
+    if ($aFruit->is(Fruit::APPLE)) {
+        echo "Eating an apple.\n";
+    } else if ($aFruit->is(Fruit::ORANGE)) {
+        echo "Eating an orange.\n";
+    }
 }
 
 // Eating an apple.
@@ -62,8 +59,7 @@ Also, the ```constantExists()``` method is available for use;
 
 ```php
 $fruit = new Fruit();
-if($fruit->constantExists("apple"))
-{
-  echo "Apple is available.\n";
+if ($fruit->constantExists("apple")) {
+    echo "Apple is available.\n";
 }
 ```
