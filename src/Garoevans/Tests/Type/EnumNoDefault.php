@@ -15,6 +15,6 @@ use Garoevans\PhpEnum\Enum;
  */
 class EnumNoDefault extends Enum
 {
-  const TRUE = "1";
-  const FALSE = "0";
+    const TRUE = "1";
+    const FALSE = "0";
 }
