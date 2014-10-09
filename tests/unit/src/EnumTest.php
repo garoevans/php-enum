@@ -76,6 +76,33 @@ class EnumTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($enum->constantExists("random"));
     }
 
+    public function testFromValue()
+    {
+        $this->assertEquals(Type\Bool::TRUE(), Type\Bool::fromValue('1'));
+    }
+
+    public function testConstFromValue()
+    {
+        $this->assertSame("TRUE", Type\Bool::constFromValue('1'));
+    }
+
+    public function testBadConstFromValueThrowsException()
+    {
+        $this->setExpectedException(
+            "UnexpectedValueException",
+            "Value 'bla' does not exist"
+        );
+
+        Type\Bool::constFromValue('bla');
+    }
+
+    public function testGetDefault()
+    {
+        $enum = new Type\Bool();
+
+        $this->assertSame(Type\Bool::TRUE, $enum->getDefault());
+    }
+
     public function testIs()
     {
         $enum = new Type\Bool(Type\Bool::TRUE);
