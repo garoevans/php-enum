@@ -1,32 +1,34 @@
 {
-  "name": "garoevans/php-enum",
-  "description": "Convenient way to always have an Enum object available and utilise Spl Types if available.",
-  "keywords": [
-    "php",
-    "enum",
-    "enumeration",
-    "type",
-    "splenum"
-  ],
-  "homepage": "https://github.com/garoevans/php-enum",
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "Gareth Evans",
-      "email": "garoevans@gmail.com",
-      "role": "developer"
+    "name": "garoevans/php-enum",
+    "description": "Convenient way to always have an Enum object available and utilise Spl Types if available.",
+    "keywords": [
+        "php",
+        "enum",
+        "enumeration",
+        "type",
+        "splenum"
+    ],
+    "homepage": "https://github.com/garoevans/php-enum",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Gareth Evans",
+            "email": "garoevans@gmail.com",
+            "role": "developer"
+        }
+    ],
+    "support": {
+        "email": "garoevans@gmail.com"
+    },
+    "require": {
+        "php": ">=5.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Garoevans\\": "src/"
+        }
     }
-  ],
-  "support": {
-    "email": "garoevans@gmail.com"
-  },
-  "require": {
-    "php": ">=5",
-	"phpunit/phpunit": "3.7.*"
-  },
-  "autoload": {
-    "psr-0": {
-      "Garoevans\\": "src/"
-    }
-  }
 }

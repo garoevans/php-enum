@@ -8,5 +8,5 @@ use Garoevans\PhpEnum\Enum;
 
 class EnumNoConstants extends Enum
 {
-  const __default = "1";
+    const __default = "1";
 }
