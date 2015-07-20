@@ -14,6 +14,7 @@ abstract class Enum
 
     protected static $defaultKey = "__default";
 
+    protected static $constantsCache = [];
 
     /**
      * @param mixed $enum
@@ -21,12 +22,22 @@ abstract class Enum
      */
     public function __construct($enum = null, $strict = false)
     {
-        $reflection = new \ReflectionClass($this);
-        $constants  = $reflection->getConstants();
-
-        $this->setDefault($constants)
-            ->setEnums($constants)
+        $this->setDefault($this->getConstants())
+            ->setEnums($this->getConstants())
             ->setEnum($enum);
+    }
+
+    /**
+     * @return array return key => value representation of the constants set in the calling class.
+     */
+    protected function getConstants()
+    {
+        $calledClass = get_called_class();
+        if (!isset(static::$constantsCache[$calledClass])) {
+            static::$constantsCache[$calledClass] = (new \ReflectionClass($this))->getConstants();
+        }
+
+        return static::$constantsCache[$calledClass];
     }
 
     /**
