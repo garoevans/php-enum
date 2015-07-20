@@ -55,11 +55,11 @@ constant. Using the ```Fruit``` class from above we can do the following;
 eat(Fruit::APPLE());
 ```
 
-Also, the ```constantExists()``` method is available for use;
+Also, the ```hasConstant()``` method is available for use;
 
 ```php
 $fruit = new Fruit();
-if ($fruit->constantExists("apple")) {
+if ($fruit->hasConstant("apple")) {
     echo "Apple is available.\n";
 }
 ```
