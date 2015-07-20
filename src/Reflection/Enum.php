@@ -7,7 +7,6 @@ namespace Garoevans\PhpEnum\Reflection;
 
 abstract class Enum
 {
-    protected $default;
     protected $enum;
     protected $enums = array();
     protected $enumsReversed = array();
@@ -22,9 +21,11 @@ abstract class Enum
      */
     public function __construct($enum = null, $strict = false)
     {
-        $this->setDefault($this->getConstants())
-            ->setEnums($this->getConstants())
-            ->setEnum($enum);
+        if (!isset($this->getConstants()[static::$defaultKey])) {
+            throw new \UnexpectedValueException("No default enum set");
+        }
+
+        $this->setEnums()->setEnum($enum);
     }
 
     /**
@@ -41,35 +42,14 @@ abstract class Enum
     }
 
     /**
-     * @param array $constants
-     *
      * @return Enum $this
      * @throws \UnexpectedValueException
      */
-    protected function setDefault(array $constants)
+    protected function setEnums()
     {
-        if (!isset($constants[self::$defaultKey])) {
-            throw new \UnexpectedValueException("No default enum set");
-        }
+        $tempConstants = $this->getConstants();
 
-        $this->default = $constants[self::$defaultKey];
-
-        return $this;
-    }
-
-    /**
-     * @param array $constants
-     *
-     * @return Enum $this
-     * @throws \UnexpectedValueException
-     */
-    protected function setEnums(array $constants)
-    {
-        $tempConstants = $constants;
-
-        if (\array_key_exists(self::$defaultKey, $tempConstants)) {
-            unset($tempConstants[self::$defaultKey]);
-        }
+        unset($tempConstants[static::$defaultKey]);
 
         if (empty($tempConstants)) {
             throw new \UnexpectedValueException("No constants set");
@@ -90,7 +70,7 @@ abstract class Enum
     protected function setEnum($enum)
     {
         if ($enum === null) {
-            $enum = $this->default;
+            $enum = $this->getConstants()[static::$defaultKey];
         }
 
         if (!\array_key_exists($enum, $this->enumsReversed)) {
@@ -118,7 +98,7 @@ abstract class Enum
 
         if ($includeDefault) {
             $constants = array_merge(
-                array(self::$defaultKey => $this->default),
+                array(self::$defaultKey => $this->getConstants()[static::$defaultKey]),
                 $constants
             );
         }
