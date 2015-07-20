@@ -106,9 +106,9 @@ abstract class Enum extends EnumWrapper
      *
      * @return bool
      */
-    public function constantExists($constant)
+    public function hasConstant($constant)
     {
-        return array_key_exists(strtoupper($constant), $this->getConstList());
+        return isset($this->getConstList()[strtoupper($constant)]);
     }
 
     /**

@@ -69,12 +69,12 @@ class EnumTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($enum, Type\Bool::FALSE);
     }
 
-    public function testConstantExists()
+    public function testHasConstant()
     {
         $enum = new Type\Bool();
 
-        $this->assertTrue($enum->constantExists("true"));
-        $this->assertFalse($enum->constantExists("random"));
+        $this->assertTrue($enum->hasConstant("true"));
+        $this->assertFalse($enum->hasConstant("random"));
     }
 
     public function testFromValue()
