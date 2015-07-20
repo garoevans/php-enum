@@ -8,8 +8,6 @@ namespace Garoevans\PhpEnum\Reflection;
 abstract class Enum
 {
     protected $enum;
-    protected $enums = array();
-    protected $enumsReversed = array();
 
     protected static $defaultKey = "__default";
 
@@ -18,6 +16,7 @@ abstract class Enum
     /**
      * @param mixed $enum
      * @param bool  $strict
+     * @throws \UnexpectedValueException
      */
     public function __construct($enum = null, $strict = false)
     {
@@ -25,7 +24,17 @@ abstract class Enum
             throw new \UnexpectedValueException("No default enum set");
         }
 
-        $this->setEnums()->setEnum($enum);
+        if (count($this->getConstants()) === 1) {
+            throw new \UnexpectedValueException("No constants set");
+        }
+
+        $enum = $enum !== null ? $enum : $this->getConstants()[static::$defaultKey];
+
+        if (!in_array($enum, $this->getConstants())) {
+            throw new \UnexpectedValueException("Enum '{$enum}' does not exist");
+        }
+
+        $this->setEnum($enum);
     }
 
     /**
@@ -42,26 +51,6 @@ abstract class Enum
     }
 
     /**
-     * @return Enum $this
-     * @throws \UnexpectedValueException
-     */
-    protected function setEnums()
-    {
-        $tempConstants = $this->getConstants();
-
-        unset($tempConstants[static::$defaultKey]);
-
-        if (empty($tempConstants)) {
-            throw new \UnexpectedValueException("No constants set");
-        }
-
-        $this->enums         = $tempConstants;
-        $this->enumsReversed = \array_flip($this->enums);
-
-        return $this;
-    }
-
-    /**
      * @param $enum
      *
      * @return Enum $this
@@ -69,14 +58,6 @@ abstract class Enum
      */
     protected function setEnum($enum)
     {
-        if ($enum === null) {
-            $enum = $this->getConstants()[static::$defaultKey];
-        }
-
-        if (!\array_key_exists($enum, $this->enumsReversed)) {
-            throw new \UnexpectedValueException("Enum '{$enum}' does not exist");
-        }
-
         $this->enum = $enum;
 
         return $this;
@@ -94,14 +75,12 @@ abstract class Enum
      */
     public function getConstList($includeDefault = false)
     {
-        $constants = $this->enums;
-
         if ($includeDefault) {
-            $constants = array_merge(
-                array(self::$defaultKey => $this->getConstants()[static::$defaultKey]),
-                $constants
-            );
+            return $this->getConstants();
         }
+
+        $constants = $this->getConstants();
+        unset($constants[static::$defaultKey]);
 
         return $constants;
     }
