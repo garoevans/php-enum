@@ -8,7 +8,7 @@
  * We also wrap the SplEnum class to stop IDEs thinking that the constructor
  * parameters are necessary.
  *
- * @author: gareth.evans
+ * @author Gareth Evans <garoevans@gmail.com>
  */
 namespace Garoevans\PhpEnum;
 

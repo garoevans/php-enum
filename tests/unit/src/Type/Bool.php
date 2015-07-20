@@ -1,7 +1,8 @@
 <?php
 /**
- * @author: gareth.evans
+ * @author Gareth Evans <garoevans@gmail.com>
  */
+
 namespace Garoevans\PhpEnum\Tests\Type;
 
 use Garoevans\PhpEnum\Enum;

@@ -1,6 +1,6 @@
 <?php
 /**
- * @author: gareth.evans
+ * @author Gareth Evans <garoevans@gmail.com>
  */
 
 namespace Garoevans\PhpEnum\Reflection;
