@@ -29,7 +29,7 @@ if (class_exists("\\SplEnum")) {
 
 /**
  * @method Enum  __toString()
- * @method array getConstList() array of constants => values
+ * @method array getConstList($include_default = false) array of constants => values
  */
 abstract class Enum extends EnumWrapper
 {

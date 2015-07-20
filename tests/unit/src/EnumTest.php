@@ -6,7 +6,7 @@ namespace Garoevans\PhpEnum\Tests;
 
 class EnumTest extends \PHPUnit_Framework_TestCase
 {
-    public function testSomething()
+    public function testInstantiatingEnumWithBadValue()
     {
         $this->setExpectedException(
             "UnexpectedValueException",
@@ -54,7 +54,7 @@ class EnumTest extends \PHPUnit_Framework_TestCase
 
         $constants = [
             "TRUE"  => "1",
-            "FALSE" => "0"
+            "FALSE" => "0",
         ];
         $this->assertEquals($constants, $enum->getConstList());
 

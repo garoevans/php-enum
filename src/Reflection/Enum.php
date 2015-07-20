@@ -7,10 +7,19 @@ namespace Garoevans\PhpEnum\Reflection;
 
 abstract class Enum
 {
+    /**
+     * @var mixed
+     */
     protected $enum;
 
+    /**
+     * @var string the required constant that represents the default
+     */
     protected static $defaultKey = "__default";
 
+    /**
+     * @var array cached constants by class.
+     */
     protected static $constantsCache = [];
 
     /**
