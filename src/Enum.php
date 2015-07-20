@@ -34,8 +34,22 @@ if (class_exists("\\SplEnum")) {
 abstract class Enum extends EnumWrapper
 {
     /**
-     * @param $name
-     * @param $arguments
+     * Allow using shorthand method of instantiating the enum object.
+     *
+     * ```
+     * class Bool extends \Garoevans\Enum
+     * {
+     *     const __default = self::TRUE;
+     *
+     *     const TRUE = "1";
+     *     const FALSE = "0";
+     * }
+     *
+     * Bool::TRUE();
+     * ```
+     *
+     * @param string $name
+     * @param array  $arguments
      *
      * @return static
      */
@@ -45,6 +59,20 @@ abstract class Enum extends EnumWrapper
     }
 
     /**
+     * Instantiate new enum object from value.
+     *
+     * ```
+     * class Bool extends \Garoevans\Enum
+     * {
+     *     const __default = self::TRUE;
+     *
+     *     const TRUE = "1";
+     *     const FALSE = "0";
+     * }
+     *
+     * Bool::fromValue("1");
+     * ```
+     *
      * @param $value
      *
      * @return mixed
