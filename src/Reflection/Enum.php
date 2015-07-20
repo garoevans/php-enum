@@ -43,7 +43,7 @@ abstract class Enum
             throw new \UnexpectedValueException("Enum '{$enum}' does not exist");
         }
 
-        $this->setEnum($enum);
+        $this->enum = $enum;
     }
 
     /**
@@ -57,19 +57,6 @@ abstract class Enum
         }
 
         return static::$constantsCache[$calledClass];
-    }
-
-    /**
-     * @param $enum
-     *
-     * @return Enum $this
-     * @throws \UnexpectedValueException
-     */
-    protected function setEnum($enum)
-    {
-        $this->enum = $enum;
-
-        return $this;
     }
 
     public function __toString()
