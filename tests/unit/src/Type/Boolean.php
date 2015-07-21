@@ -14,7 +14,7 @@ use Garoevans\PhpEnum\Enum;
  * @method static TRUE
  * @method static FALSE
  */
-class Bool extends Enum
+class Boolean extends Enum
 {
     const __default = self::TRUE;
 

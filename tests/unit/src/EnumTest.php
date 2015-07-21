@@ -14,13 +14,13 @@ class EnumTest extends \PHPUnit_Framework_TestCase
             "Enum 'non_value' does not exist"
         );
 
-        new Type\Bool("non_value");
+        new Type\Boolean("non_value");
     }
 
     public function testSetAndToString()
     {
-        $enum = new Type\Bool(Type\Bool::TRUE);
-        $this->assertEquals($enum, Type\Bool::TRUE);
+        $enum = new Type\Boolean(Type\Boolean::TRUE);
+        $this->assertEquals($enum, Type\Boolean::TRUE);
     }
 
     public function testExceptionThrownWhenNoDefaultSet()
@@ -45,13 +45,13 @@ class EnumTest extends \PHPUnit_Framework_TestCase
 
     public function testDefaultSetWhenNoValuePassed()
     {
-        $enum = new Type\Bool();
-        $this->assertEquals($enum, Type\Bool::__default);
+        $enum = new Type\Boolean();
+        $this->assertEquals($enum, Type\Boolean::__default);
     }
 
     public function testGetConstList()
     {
-        $enum = new Type\Bool();
+        $enum = new Type\Boolean();
 
         $constants = [
             "TRUE"  => "1",
@@ -65,13 +65,13 @@ class EnumTest extends \PHPUnit_Framework_TestCase
 
     public function testCallStatic()
     {
-        $enum = Type\Bool::FALSE();
-        $this->assertEquals($enum, Type\Bool::FALSE);
+        $enum = Type\Boolean::FALSE();
+        $this->assertEquals($enum, Type\Boolean::FALSE);
     }
 
     public function testHasConstant()
     {
-        $enum = new Type\Bool();
+        $enum = new Type\Boolean();
 
         $this->assertTrue($enum->hasConstant("true"));
         $this->assertFalse($enum->hasConstant("random"));
@@ -79,12 +79,12 @@ class EnumTest extends \PHPUnit_Framework_TestCase
 
     public function testFromValue()
     {
-        $this->assertEquals(Type\Bool::TRUE(), Type\Bool::fromValue('1'));
+        $this->assertEquals(Type\Boolean::TRUE(), Type\Boolean::fromValue('1'));
     }
 
     public function testConstFromValue()
     {
-        $this->assertSame("TRUE", Type\Bool::constFromValue('1'));
+        $this->assertSame("TRUE", Type\Boolean::constFromValue('1'));
     }
 
     public function testBadConstFromValueThrowsException()
@@ -94,22 +94,22 @@ class EnumTest extends \PHPUnit_Framework_TestCase
             "Value 'bla' does not exist"
         );
 
-        Type\Bool::constFromValue('bla');
+        Type\Boolean::constFromValue('bla');
     }
 
     public function testGetDefault()
     {
-        $enum = new Type\Bool();
+        $enum = new Type\Boolean();
 
-        $this->assertSame(Type\Bool::TRUE, $enum->getDefault());
+        $this->assertSame(Type\Boolean::TRUE, $enum->getDefault());
     }
 
     public function testIs()
     {
-        $enum = new Type\Bool(Type\Bool::TRUE);
+        $enum = new Type\Boolean(Type\Boolean::TRUE);
 
-        $this->assertTrue($enum->is(Type\Bool::TRUE));
-        $this->assertFalse($enum->is(Type\Bool::FALSE));
+        $this->assertTrue($enum->is(Type\Boolean::TRUE));
+        $this->assertFalse($enum->is(Type\Boolean::FALSE));
     }
 
     /**
@@ -118,9 +118,9 @@ class EnumTest extends \PHPUnit_Framework_TestCase
     public function testMatch($shouldMatch, $val1, $val2, $strict)
     {
         if ($shouldMatch) {
-            $this->assertTrue(Type\Bool::match($val1, $val2, $strict));
+            $this->assertTrue(Type\Boolean::match($val1, $val2, $strict));
         } else {
-            $this->assertFalse(Type\Bool::match($val1, $val2, $strict));
+            $this->assertFalse(Type\Boolean::match($val1, $val2, $strict));
         }
     }
 
@@ -128,13 +128,13 @@ class EnumTest extends \PHPUnit_Framework_TestCase
     {
         return array(
             array(true, 1, 1, true),
-            array(true, new Type\Bool(), new Type\Bool(), true),
-            array(true, new Type\Bool(), 1, true),
-            array(true, new Type\Bool(), Type\Bool::TRUE, true),
+            array(true, new Type\Boolean(), new Type\Boolean(), true),
+            array(true, new Type\Boolean(), 1, true),
+            array(true, new Type\Boolean(), Type\Boolean::TRUE, true),
             array(false, 1, 2, true),
-            array(false, new Type\Bool(), new Type\Bool(Type\Bool::FALSE), true),
-            array(false, new Type\Bool(), 0, true),
-            array(false, new Type\Bool(), Type\Bool::FALSE, true),
+            array(false, new Type\Boolean(), new Type\Boolean(Type\Boolean::FALSE), true),
+            array(false, new Type\Boolean(), 0, true),
+            array(false, new Type\Boolean(), Type\Boolean::FALSE, true),
             array(true, "foo", "foo", false),
             array(false, "foo", "foo", true),
         );
