@@ -8,7 +8,6 @@ php:
 
 before_script:
   - composer install
-  email@garoevans.pagerduty.com
 
 script: ./vendor/bin/phpunit --coverage-text
 
