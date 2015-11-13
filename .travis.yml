@@ -8,5 +8,11 @@ php:
 
 before_script:
   - composer install
+  email@garoevans.pagerduty.com
 
 script: ./vendor/bin/phpunit --coverage-text
+
+notifications:
+  email:
+    recipients:
+      - email@garoevans.pagerduty.com
