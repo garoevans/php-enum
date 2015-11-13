@@ -19,7 +19,7 @@ class EnumTest extends \PHPUnit_Framework_TestCase
     public function testSetAndToString()
     {
         $enum = new Type\Bool(Type\Bool::TRUE);
-        $this->assertEquals($enum, Type\Bool::TRUE);
+        $this->assertEquals($enum, Type\Bool::FALSE);
     }
 
     public function testExceptionThrownWhenNoDefaultSet()
